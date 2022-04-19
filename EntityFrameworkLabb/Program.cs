@@ -103,12 +103,6 @@ Menu menu = new()
     }
 };
 menu.Show(new(default, ConsoleKey.Enter, false, false, false));
-
-int C(ConsoleKeyInfo info)
-{
-    return 1 * ((info.Modifiers | ConsoleModifiers.Control) != 0 ? 100 : 1) * ((info.Modifiers | ConsoleModifiers.Shift) != 0 ? 10 : 1) * ((info.Modifiers | ConsoleModifiers.Alt) != 0 ? 10 : 1);
-}
-
 static class Ext
 {
     public static DateTime AddDays(this DateTime date, ConsoleModifiers mod, int amount) => mod switch
