@@ -31,7 +31,7 @@ Menu requestMenu = new()
         }),
     }
 };
-requestMenu.Options.Add((() => "Submit", (i) => { if (i.Key == ConsoleKey.Enter) { workplace.VacationRequests.Add(new(user, startDate, TimeSpan.FromDays(days), reason) { Comment = comment, }); requestMenu.IsOpen = false; } }));
+requestMenu.Options.Add((() => "Submit", (i) => { if (i.Key == ConsoleKey.Enter) { workplace.VacationRequests.Add(new(user, startDate, TimeSpan.FromDays(days), reason) { Comment = comment, }); workplace.SaveChanges(); requestMenu.IsOpen = false; } }));
 
 
 
@@ -87,7 +87,7 @@ void BuildViewRequests()
         if (req.CreationTime >= startTime && req.CreationTime <= endTime && selectedWorkers.Contains(req.Worker))
             requestView.Options.Add((
                 () => $"{req.CreationTime:d} by {req.Worker.Name}:".PadRight(32) + $"{req.Reason} from {req.From:d} until {req.End:d}".PadRight(64),
-                (ConsoleKeyInfo i) => { }
+                (ConsoleKeyInfo i) => { if (i.Key == ConsoleKey.Delete) { workplace.VacationRequests.Remove(item); workplace.SaveChanges(); BuildViewRequests();  } }
             ));
     }
 }
