@@ -52,7 +52,7 @@ namespace EntityFrameworkLabb.Migrations
 
                     b.HasIndex("WorkerID");
 
-                    b.ToTable("VacationRequests");
+                    b.ToTable("VacationRequests", (string)null);
                 });
 
             modelBuilder.Entity("Worker", b =>
@@ -69,7 +69,7 @@ namespace EntityFrameworkLabb.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Workers");
+                    b.ToTable("Workers", (string)null);
                 });
 
             modelBuilder.Entity("Request", b =>
